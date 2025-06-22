@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -12,6 +11,10 @@ import desco from "../assets/desco.png";
 import digital from "../assets/digital.jpg";
 import cashBack from "../assets/pngtree-cashback.png";
 import OrgCard from "../components/OrgCard";
+import Featured from "../components/Featured";
+import Steps from "../components/Steps";
+import Testimonial from "../components/Testimonial";
+import WhyChooseUs from "../components/WhyChooseUs";
 
 const Home = () => {
   return (
@@ -74,6 +77,21 @@ const Home = () => {
       <div className="pt-16 pb-10 w-11/12 mx-auto">
         <OrgCard />
       </div>
+
+      {/*  */}
+
+      <div className="bg-gray-50 mt-10 mx-auto">
+        <Featured></Featured>
+        <div className="py-10">
+          <Steps></Steps>
+          <Testimonial></Testimonial>
+        </div>
+        <div>
+            <h1 className="text-4xl font-bold text-center mb-5">Why Choose Us?</h1>
+            <WhyChooseUs></WhyChooseUs>
+        </div>
+      </div>
+      
     </div>
   );
 };
