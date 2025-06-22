@@ -11,6 +11,7 @@ import discount from "../assets/discount-2345221_1280.png";
 import desco from "../assets/desco.png";
 import digital from "../assets/digital.jpg";
 import cashBack from "../assets/pngtree-cashback.png";
+import OrgCard from "../components/OrgCard";
 
 const Home = () => {
   return (
@@ -67,6 +68,11 @@ const Home = () => {
             />
           </SwiperSlide>
         </Swiper>
+      </div>
+
+      {/* card */}
+      <div className="pt-16 pb-10 w-11/12 mx-auto">
+        <OrgCard />
       </div>
     </div>
   );
