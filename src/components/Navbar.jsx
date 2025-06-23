@@ -7,7 +7,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { user } = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
 
   return (
     <div className="bg-gray-900">
@@ -80,7 +80,7 @@ const Navbar = () => {
                   <MenuItem>
                     <button
                       onClick={() => {
-                        console.log("Sign out clicked");
+                        logOut();
                       }}
                       className="w-full text-left rounded-md px-3 py-2 hover:bg-white/10"
                     >

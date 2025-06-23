@@ -1,8 +1,32 @@
-import React from "react";
+import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const { signIn } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    signIn(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+        toast.error(errorMessage, {
+          duration: 2000,
+          icon: "❌",
+        });
+      });
+  };
   return (
     <div
       style={{ minHeight: "calc(100vh - 250px)" }}
@@ -34,7 +58,7 @@ const Login = () => {
           <hr className="w-full border-gray-400" />
         </div>
 
-        <form className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label htmlFor="email" className="block mb-1 text-sm font-medium">
               Email address
@@ -45,7 +69,7 @@ const Login = () => {
               name="email"
               placeholder="you@example.com"
               className="w-full px-3 py-2 border rounded-md border-gray-400 bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
-               required
+              required
             />
           </div>
 
@@ -54,7 +78,10 @@ const Login = () => {
               <label htmlFor="password" className="text-sm font-medium">
                 Password
               </label>
-              <a href="#" className="text-xs text-black font-semibold hover:underline">
+              <a
+                href="#"
+                className="text-xs text-black font-semibold hover:underline"
+              >
                 Forgot password?
               </a>
             </div>
@@ -64,12 +91,12 @@ const Login = () => {
               name="password"
               placeholder="••••••"
               className="w-full px-3 py-2 border rounded-md border-gray-400 bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
-               required
+              required
             />
           </div>
 
           <button
-            type="button"
+            type="submit"
             className="w-full py-2 font-semibold rounded-md bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black"
           >
             Sign in
