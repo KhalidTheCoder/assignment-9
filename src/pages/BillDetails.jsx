@@ -10,7 +10,7 @@ const BillDetails = () => {
   }
 
   return (
-    <div style={{ minHeight: "calc(100vh - 260px)" }} className="bg-gray-50 flex items-center justify-center">
+    <div style={{ minHeight: "calc(100vh - 250px)" }} className="bg-gray-50 flex items-center justify-center">
       <div className="px-4 py-16 w-full max-w-screen-lg">
         <div className="flex flex-col max-w-screen-lg overflow-hidden bg-white rounded-lg shadow-lg lg:flex-row sm:mx-auto">
           <div className="relative lg:w-1/2">

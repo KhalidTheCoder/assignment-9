@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router";
 import logo from "../assets/invoice.png";
+import { AuthContext } from "../provider/AuthProvider";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { user } = use(AuthContext);
 
   return (
     <div className="bg-gray-900">
@@ -15,21 +19,6 @@ const Navbar = () => {
             title="Company"
             className="inline-flex items-center"
           >
-            {/* <svg
-              className="w-8 text-teal-400"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeMiterlimit="10"
-              stroke="currentColor"
-              fill="none"
-            >
-              <rect x="3" y="1" width="7" height="12" />
-              <rect x="3" y="17" width="7" height="6" />
-              <rect x="14" y="1" width="7" height="6" />
-              <rect x="14" y="11" width="7" height="12" />
-            </svg> */}
             <img className="w-[41px] h-[41px]" src={logo} alt="" />
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-100">
               EasyBill
@@ -60,38 +49,69 @@ const Navbar = () => {
                 Profile
               </Link>
             </li>
-            <li>
-              <Link
-                to="/about"
-                aria-label="About us"
-                title="About us"
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
-              >
-                About us
-              </Link>
-            </li>
           </ul>
+          {user ? (
+            <div className="relative">
+              <Menu>
+                <MenuButton className="inline-flex items-center rounded-full focus:outline-none">
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName}
+                      className="w-10 h-10 rounded-full"
+                    />
+                  ) : (
+                    <span className="text-gray-100 font-medium">
+                      {user.displayName}
+                    </span>
+                  )}
+                </MenuButton>
 
-          <ul className="flex items-center hidden space-x-4 lg:flex">
-            <li>
-              <Link
-                to="/login"
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
-              >
-                Sign in
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/register"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign up
-              </Link>
-            </li>
-          </ul>
+                <MenuItems
+                  anchor="bottom end"
+                  className="w-60 origin-top-right rounded-lg border border-white/10 bg-gray-800 p-2 text-sm text-white shadow-lg focus:outline-none transition duration-100 ease-out absolute z-50"
+                >
+                  <div className="px-3 py-2">
+                    <div className="font-semibold">{user.displayName}</div>
+                    <div className="text-xs text-white/70">{user.email}</div>
+                    <div className="mt-1 text-sm text-green-400">৳10,000</div>
+                  </div>
+                  <div className="my-1 h-px bg-white/10" />
+                  <MenuItem>
+                    <button
+                      onClick={() => {
+                        console.log("Sign out clicked");
+                      }}
+                      className="w-full text-left rounded-md px-3 py-2 hover:bg-white/10"
+                    >
+                      Sign Out
+                    </button>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
+            </div>
+          ) : (
+            <ul className="flex items-center hidden space-x-4 lg:flex">
+              <li>
+                <Link
+                  to="/login"
+                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
+                >
+                  Sign in
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/register"
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                  aria-label="Sign up"
+                  title="Sign up"
+                >
+                  Sign up
+                </Link>
+              </li>
+            </ul>
+          )}
           <div className="lg:hidden">
             <button
               aria-label="Open Menu"
@@ -115,7 +135,7 @@ const Navbar = () => {
               </svg>
             </button>
             {isMenuOpen && (
-              <div className="absolute top-0 left-0 w-full">
+              <div className="absolute top-0 left-0 w-full z-50">
                 <div className="p-5 bg-white border rounded shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <div>
@@ -187,34 +207,29 @@ const Navbar = () => {
                           Profile
                         </Link>
                       </li>
-                      <li>
-                        <Link
-                          to="/about"
-                          aria-label="About us"
-                          title="About us"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600"
-                        >
-                          About us
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/login"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600"
-                        >
-                          Sign in
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/register"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                          aria-label="Sign up"
-                          title="Sign up"
-                        >
-                          Sign up
-                        </Link>
-                      </li>
+
+                      {!user && (
+                        <>
+                          <li>
+                            <Link
+                              to="/login"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-600"
+                            >
+                              Sign in
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/register"
+                              className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                              aria-label="Sign up"
+                              title="Sign up"
+                            >
+                              Sign up
+                            </Link>
+                          </li>
+                        </>
+                      )}
                     </ul>
                   </nav>
                 </div>

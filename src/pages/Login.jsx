@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Login = () => {
   return (
     <div
-      style={{ minHeight: "calc(100vh - 260px)" }}
+      style={{ minHeight: "calc(100vh - 250px)" }}
       className="min-h-screen flex items-center justify-center bg-gray-50 p-4"
     >
       <div className="w-full max-w-md p-6 rounded-lg shadow-md bg-white text-black">

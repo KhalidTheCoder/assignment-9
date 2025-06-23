@@ -1,10 +1,47 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+  const { createUser, setUser } = use(AuthContext);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    // console.log({photo,name,email,password});
+
+    createUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        updateProfile(user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            setUser({
+              ...user,
+              displayName: name,
+              photoURL: photo,
+            });
+          })
+          .catch((error) => {
+            console.error("Profile update error:", error);
+          });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
+
   return (
     <div
-      style={{ minHeight: "calc(100vh - 260px)" }}
+      style={{ minHeight: "calc(100vh - 250px)" }}
       className="min-h-screen flex items-center justify-center bg-gray-50 p-4"
     >
       <div className="w-full max-w-md p-6 rounded-lg shadow-md bg-white text-black">
@@ -21,7 +58,7 @@ const Register = () => {
           </Link>
         </p>
 
-        <form className="space-y-5">
+        <form onSubmit={handleRegister} className="space-y-5">
           <div>
             <label htmlFor="name" className="block mb-1 text-sm font-medium">
               Name
@@ -77,7 +114,7 @@ const Register = () => {
           </div>
 
           <button
-            type="button"
+            type="submit"
             className="w-full py-2 font-semibold rounded-md bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black"
           >
             Sign up
