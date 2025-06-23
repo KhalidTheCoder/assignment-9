@@ -53,6 +53,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () => fetch("/bills.json").then((res) => res.json()),
+        hydrateFallbackElement: <Loading></Loading>,
       },
     ],
   },

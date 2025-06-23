@@ -16,12 +16,6 @@ const Register = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-
-    if (name.length < 5) {
-      setError("Name should be at least 5 characters");
-      return;
-    }
-
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;

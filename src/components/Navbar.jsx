@@ -7,7 +7,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut, balance } = use(AuthContext);
 
   return (
     <div className="bg-gray-900">
@@ -74,7 +74,9 @@ const Navbar = () => {
                   <div className="px-3 py-2">
                     <div className="font-semibold">{user.displayName}</div>
                     <div className="text-xs text-white/70">{user.email}</div>
-                    <div className="mt-1 text-sm text-green-400">৳10,000</div>
+                    <div className="mt-1 text-sm text-green-400">
+                      ৳{balance.toLocaleString()}
+                    </div>
                   </div>
                   <div className="my-1 h-px bg-white/10" />
                   <MenuItem>

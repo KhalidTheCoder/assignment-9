@@ -87,11 +87,12 @@ const Home = () => {
           <Testimonial></Testimonial>
         </div>
         <div>
-            <h1 className="text-4xl font-bold text-center mb-5">Why Choose Us?</h1>
-            <WhyChooseUs></WhyChooseUs>
+          <h1 className="text-4xl font-bold text-center mb-5">
+            Why Choose Us?
+          </h1>
+          <WhyChooseUs></WhyChooseUs>
         </div>
       </div>
-      
     </div>
   );
 };

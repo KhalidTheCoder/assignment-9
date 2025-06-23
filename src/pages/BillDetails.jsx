@@ -1,16 +1,55 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useLoaderData, useParams } from "react-router";
+import { handlePaid, getPaid } from "../utils";
+import { AuthContext } from "../provider/AuthProvider";
 
 const BillDetails = () => {
+  const [selectedCard, setSelectedCard] = useState("");
   const bills = useLoaderData();
   const { id } = useParams();
   const bill = bills.find((bill) => bill.id === parseInt(id));
+
+  const { balance, reduceBalance } = use(AuthContext);
+  const [isPaid, setIsPaid] = useState(false);
+
+  useEffect(() => {
+    const paidList = getPaid();
+    const alreadyPaid = paidList.some((b) => b.id === bill.id);
+    setIsPaid(alreadyPaid);
+  }, [bill.id]);
+
   if (!bill) {
     return <div className="text-center p-6">Bill not found</div>;
   }
 
+  const handlePay = () => {
+    if (!selectedCard) {
+      toast.error("Please select a card!");
+      return;
+    }
+
+    if (isPaid) {
+      toast.error("This bill has already been paid!");
+      return;
+    }
+
+    if (balance < bill.amount) {
+      toast.error("Insufficient balance!");
+      return;
+    }
+
+    handlePaid(bill);
+    reduceBalance(bill.amount);
+    toast.success(`Paid ৳${bill.amount} with ${selectedCard}`);
+    setIsPaid(true);
+  };
+
   return (
-    <div style={{ minHeight: "calc(100vh - 250px)" }} className="bg-gray-50 flex items-center justify-center">
+    <div
+      style={{ minHeight: "calc(100vh - 250px)" }}
+      className="bg-gray-50 flex items-center justify-center"
+    >
       <div className="px-4 py-16 w-full max-w-screen-lg">
         <div className="flex flex-col max-w-screen-lg overflow-hidden bg-white rounded-lg shadow-lg lg:flex-row sm:mx-auto">
           <div className="relative lg:w-1/2">
@@ -45,8 +84,42 @@ const BillDetails = () => {
             <p className="mb-4 text-gray-800 font-medium">
               Due Date: {new Date(bill["due-date"]).toLocaleDateString()}
             </p>
+
+            <div className="mb-4">
+              <label className="block mb-1 font-medium text-gray-700">
+                Select a Payment Method
+              </label>
+              <select
+                value={selectedCard}
+                onChange={(e) => setSelectedCard(e.target.value)}
+                className="border-2 border-black font-semibold rounded p-2"
+              >
+                <option className="font-medium text-violet-700" value="">
+                  Choose a Card
+                </option>
+                <option className="font-medium text-violet-700" value="Bkash">
+                  Bkash
+                </option>
+                <option className="font-medium text-violet-700" value="Nagad">
+                  Nagad
+                </option>
+                <option className="font-medium text-violet-700" value="Paypal">
+                  Paypal
+                </option>
+                <option
+                  className="font-medium text-violet-700"
+                  value="MasterCard"
+                >
+                  MasterCard
+                </option>
+              </select>
+            </div>
+
             <div className="flex items-center">
-              <button className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-800 focus:shadow-outline focus:outline-none">
+              <button
+                onClick={handlePay}
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-800 focus:shadow-outline focus:outline-none"
+              >
                 Pay Now
               </button>
               <Link

@@ -15,6 +15,15 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [balance, setBalance] = useState(() => {
+    const stored = localStorage.getItem("balance");
+    return stored ? parseFloat(stored) : 10000;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("balance", balance);
+  }, [balance]);
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -44,6 +53,10 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  const reduceBalance = (amount) => {
+    setBalance((prev) => prev - amount);
+  };
+
   const authData = {
     user,
     setUser,
@@ -52,6 +65,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     loading,
     setLoading,
+    balance,
+    reduceBalance,
   };
   return <AuthContext value={authData}>{children}</AuthContext>;
 };
