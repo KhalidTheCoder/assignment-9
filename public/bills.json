@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "bill_type": "Electricity",
+    "icon": "https://i.imgur.com/2zN4uZR.png",
+    "organization": "DESCO",
+    "amount": 1890,
+    "due-date": "2025-07-05T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "bill_type": "Electricity",
+    "icon": "https://i.imgur.com/gejdoW4.png",
+    "organization": "NESCO",
+    "amount": 1750,
+    "due-date": "2025-07-08T00:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "bill_type": "Water",
+    "icon": "https://i.imgur.com/fTWc3qh.png",
+    "organization": "WASA",
+    "amount": 900,
+    "due-date": "2025-07-10T00:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "bill_type": "Electricity",
+    "icon": "https://i.imgur.com/iBneiUW.jpeg",
+    "organization": "PDB",
+    "amount": 1600,
+    "due-date": "2025-07-12T00:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "bill_type": "Gas",
+    "icon": "https://i.imgur.com/tJLZYXY.png",
+    "organization": "Titas",
+    "amount": 1450,
+    "due-date": "2025-07-15T00:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "bill_type": "Internet",
+    "icon": "https://i.imgur.com/RTfZnKO.png",
+    "organization": "Link3",
+    "amount": 1200,
+    "due-date": "2025-07-18T00:00:00.000Z"
+  }
+]
