@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 import Bills from "../pages/Bills";
 import Loading from "../components/Loading";
+import BillDetails from "../pages/BillDetails";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ export const router = createBrowserRouter([
         Component: Bills,
         loader: () => fetch(`/bills.json`).then((res) => res.json()),
         hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/billdetails/:id",
+        Component: BillDetails,
+        loader: () => fetch("/bills.json").then((res) => res.json()),
       },
     ],
   },

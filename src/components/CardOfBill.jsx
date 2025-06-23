@@ -28,10 +28,8 @@ const CardOfBill = ({ bill }) => {
 
         <button>
           <Link
-            to="/"
+            to={`/billdetails/${bill.id}`}
             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-            aria-label="Sign up"
-            title="Sign up"
           >
             See Details
           </Link>
