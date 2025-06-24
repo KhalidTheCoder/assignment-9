@@ -1,12 +1,35 @@
-# React + Vite
+# EasyBill
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EasyBill is a billing and payment app built with React and Firebase. It provides a responsive, user-friendly interface for managing and viewing your bills securely.
 
-Currently, two official plugins are available:
+## 🌐 Live URL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Visit EasyBill](https://easy-bill-c7318.web.app)
 
-## Expanding the ESLint configuration
+## 🚀 Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 Login with Email/Password or Google
+- 🔒 Private Routes for authenticated users
+- 💰 Balance tracking with persistent state
+- 👤 Profile update (Name & Photo)
+- 🌗 Dark mode support
+- ⚡ Fast performance with Vite
+- 📱 Fully responsive design
+
+## 🛠 Built With
+
+- **React** – UI Library
+- **Vite** – Fast build tool
+- **Firebase** – Authentication and hosting
+- **Tailwind CSS** – Utility-first styling
+- **DaisyUI** – Pre-styled Tailwind components
+- **React Router** – Routing and protected routes
+- **React Icons** – Icon library
+- **Headless UI** – Accessible UI components
+
+## 📦 Getting Started
+
+```bash
+npm install
+npm run dev
+```
