@@ -22,9 +22,9 @@ const Bills = () => {
     <div style={{ minHeight: "calc(100vh - 250px)" }} className="bg-gray-50">
       <div className="container mx-auto max-w-6xl p-6 space-y-6 sm:space-y-12">
         <div className="mb-4">
-          <label className="mr-2 font-semibold">Bill Type:</label>
+          <label className="mr-2 text-black font-semibold">Bill Type:</label>
           <select
-            className="border-2 font-medium px-2 py-1 rounded"
+            className="border-2 border-black text-black font-medium px-2 py-1 rounded"
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
           >
