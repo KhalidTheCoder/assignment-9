@@ -6,11 +6,12 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, googleSignIn } = use(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const { signIn, googleSignIn, handleForgetPassword } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
-    const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         console.log(result);
@@ -23,7 +24,6 @@ const Login = () => {
         console.error(error);
       });
   };
-
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -65,7 +65,10 @@ const Login = () => {
         </p>
 
         <div className="my-6 space-y-4">
-          <button onClick={handleGoogleSignIn} className="btn w-full btn-outline btn-info">
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn w-full btn-outline btn-info"
+          >
             <FcGoogle size={24}></FcGoogle> Login With Google
           </button>
         </div>
@@ -85,6 +88,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
+              onChange={(e)=>setUserEmail(e.target.value)}
               placeholder="you@example.com"
               className="w-full px-3 py-2 border rounded-md border-gray-400 bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
               required
@@ -96,12 +100,14 @@ const Login = () => {
               <label htmlFor="password" className="text-sm font-medium">
                 Password
               </label>
-              <a
-                href="#"
-                className="text-xs text-black font-semibold hover:underline"
+              <div
+                onClick={() => {
+                  handleForgetPassword(userEmail);
+                }}
+                className="text-xs cursor-pointer text-black font-semibold hover:underline"
               >
                 Forgot password?
-              </a>
+              </div>
             </div>
             <input
               type="password"

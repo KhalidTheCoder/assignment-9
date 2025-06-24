@@ -5,9 +5,11 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import toast from "react-hot-toast";
 
@@ -39,6 +41,33 @@ const AuthProvider = ({ children }) => {
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, provider);
+  };
+
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    })
+      .then(() => {
+        setUser({ ...auth.currentUser, displayName: name, photoURL: photo });
+        toast.success("Profile updated successfully!");
+      })
+      .catch((error) => {
+        toast.error("Update failed: " + error.message);
+        throw error;
+      });
+  };
+
+  const handleForgetPassword = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success("Reset email sent! Check your inbox or spam folder.", {
+          duration: 5000,
+        });
+      })
+      .catch((error) => {
+        toast.error("Password reset failed: " + error.message);
+      });
   };
 
   const logOut = () => {
@@ -76,7 +105,9 @@ const AuthProvider = ({ children }) => {
     createUser,
     signIn,
     googleSignIn,
+    updateUserProfile,
     logOut,
+    handleForgetPassword,
     loading,
     setLoading,
     balance,
