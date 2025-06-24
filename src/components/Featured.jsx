@@ -39,7 +39,7 @@ const Featured = () => {
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
             <FaBolt className="w-8 h-8 text-violet-600" />
           </div>
-          <h6 className="mb-2 text-lg sm:text-xl font-semibold leading-5">
+          <h6 className="mb-2 text-lg sm:text-xl text-black font-semibold leading-5">
             Electricity Bill
           </h6>
           <ul className="-ml-1 space-y-2">
@@ -62,7 +62,7 @@ const Featured = () => {
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
             <FaFireAlt className="w-8 h-8 text-violet-600" />
           </div>
-          <h6 className="mb-2 text-lg sm:text-xl font-semibold leading-5">
+          <h6 className="mb-2 text-lg sm:text-xl text-black font-semibold leading-5">
             Gas Bill
           </h6>
           <ul className="-ml-1 space-y-2">
@@ -85,7 +85,7 @@ const Featured = () => {
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
             <FaGlobe className="w-8 h-8 text-violet-600" />
           </div>
-          <h6 className="mb-2 text-lg sm:text-xl font-semibold leading-5">
+          <h6 className="mb-2 text-lg sm:text-xl text-black font-semibold leading-5">
             Internet Bill
           </h6>
           <ul className="-ml-1 space-y-2">
@@ -108,7 +108,7 @@ const Featured = () => {
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
             <FaUniversity className="w-8 h-8 text-violet-600" />
           </div>
-          <h6 className="mb-2 text-lg sm:text-xl font-semibold leading-5">
+          <h6 className="mb-2 text-lg sm:text-xl text-black font-semibold leading-5">
             Tuition Fee
           </h6>
           <ul className="-ml-1 space-y-2">

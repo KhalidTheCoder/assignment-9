@@ -44,7 +44,7 @@ const Steps = () => {
           <div className="flex items-center justify-center w-24 h-24 mb-4 text-5xl font-extrabold rounded-full text-violet-500 bg-indigo-50 sm:mx-auto">
             1
           </div>
-          <h6 className="mb-2 font-semibold text-xl leading-5">Login / Register</h6>
+          <h6 className="mb-2 font-semibold text-xl text-black leading-5">Login / Register</h6>
           <p className="max-w-md mb-3 text-sm font-medium text-gray-500 sm:mx-auto">
             You have to Signin or SignUp first to pay your bills.
           </p>
@@ -54,7 +54,7 @@ const Steps = () => {
           <div className="flex items-center justify-center w-24 h-24 mb-4 text-5xl font-extrabold rounded-full text-violet-500 bg-indigo-50 sm:mx-auto">
             2
           </div>
-          <h6 className="mb-2 font-semibold text-xl leading-5">Go to Payments Section</h6>
+          <h6 className="mb-2 font-semibold text-xl text-black leading-5">Go to Payments Section</h6>
           <p className="max-w-md mb-3 text-sm font-medium text-gray-500 sm:mx-auto">
             In the Payments section select your payable item by click on see details
           </p>
@@ -64,7 +64,7 @@ const Steps = () => {
           <div className="flex items-center justify-center w-24 h-24 mb-4 text-5xl font-extrabold rounded-full text-violet-500 bg-indigo-50 sm:mx-auto">
             3
           </div>
-          <h6 className="mb-2 font-semibold text-xl leading-5">
+          <h6 className="mb-2 font-semibold text-xl text-black leading-5">
             Confirm & Pay Securely
           </h6>
           <p className="max-w-md mb-3 text-sm font-medium text-gray-500 sm:mx-auto">

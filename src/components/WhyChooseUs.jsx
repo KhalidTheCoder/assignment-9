@@ -3,7 +3,7 @@ import CountUp from "react-countup";
 
 const WhyChooseUs = () => {
   return (
-    <section className="p-6 py-10  mt-6 bg-gray-50 text-gray-800 dark:bg-gray-100 dark:text-gray-800">
+    <section className="p-6 py-10  mt-6">
       <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
         <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 bg-white shadow hover:shadow-lg transition">
           <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 bg-violet-500">
@@ -18,10 +18,10 @@ const WhyChooseUs = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-3xl font-semibold">
+            <p className="text-3xl text-black font-semibold">
               <CountUp end={200} duration={10} useEasing />+
             </p>
-            <p className="capitalize font-medium">Completed Orders</p>
+            <p className="capitalize text-gray-700 font-medium">Completed Orders</p>
           </div>
         </div>
 
@@ -38,10 +38,10 @@ const WhyChooseUs = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-3xl font-semibold">
+            <p className="text-3xl text-black font-semibold">
               <CountUp end={7500} duration={10} separator="," useEasing />+
             </p>
-            <p className="capitalize font-medium">New Customers</p>
+            <p className="capitalize text-gray-700 font-medium">New Customers</p>
           </div>
         </div>
 
@@ -57,10 +57,10 @@ const WhyChooseUs = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-3xl font-semibold">
+            <p className="text-3xl text-black font-semibold">
               <CountUp end={172} duration={10} useEasing />%
             </p>
-            <p className="capitalize font-medium">Business Growth</p>
+            <p className="capitalize text-gray-700 font-medium">Business Growth</p>
           </div>
         </div>
 
@@ -76,10 +76,10 @@ const WhyChooseUs = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-3xl font-semibold">
+            <p className="text-3xl text-black font-semibold">
               <CountUp end={17} duration={10} useEasing />%
             </p>
-            <p className="capitalize font-medium">Low Bounce Rate</p>
+            <p className="capitalize text-gray-700 font-medium">Low Bounce Rate</p>
           </div>
         </div>
       </div>

@@ -72,7 +72,7 @@ const BillDetails = () => {
                 Bill Details
               </p>
             </div>
-            <h2 className="mb-3 text-3xl font-extrabold leading-none sm:text-4xl">
+            <h2 className="mb-3 text-3xl text-black font-extrabold leading-none sm:text-4xl">
               {bill.organization}
             </h2>
             <p className="mb-2 text-gray-800 font-medium">
@@ -92,7 +92,7 @@ const BillDetails = () => {
               <select
                 value={selectedCard}
                 onChange={(e) => setSelectedCard(e.target.value)}
-                className="border-2 border-black font-semibold rounded p-2"
+                className="border-2 text-black border-black font-semibold rounded p-2"
               >
                 <option className="font-medium text-violet-700" value="">
                   Choose a Card

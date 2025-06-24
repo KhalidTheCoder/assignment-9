@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import BillDetails from "../pages/BillDetails";
 import PrivateRoute from "../components/PrivateRoute";
 import Profile from "../pages/Profile";
+import UpdateProfile from "../pages/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
+      {
+         path: "/updateprofile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile></UpdateProfile>
           </PrivateRoute>
         ),
       },

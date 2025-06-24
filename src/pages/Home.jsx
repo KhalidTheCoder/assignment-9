@@ -87,7 +87,7 @@ const Home = () => {
           <Testimonial></Testimonial>
         </div>
         <div>
-          <h1 className="text-4xl font-bold text-center mb-5">
+          <h1 className="text-4xl text-black font-bold text-center mb-5">
             Why Choose Us?
           </h1>
           <WhyChooseUs></WhyChooseUs>
