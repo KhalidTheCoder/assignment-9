@@ -6,11 +6,26 @@ import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, setUser } = use(AuthContext);
+  const { createUser, setUser, googleSignIn } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
+
+  const handleGoogleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        toast.success("Signed in with Google!");
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        toast.error("Google sign-in failed!");
+        console.error(error);
+      });
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -87,7 +102,10 @@ const Register = () => {
         </p>
 
         <div className="my-6 space-y-4">
-          <button className="btn w-full btn-outline btn-info">
+          <button
+            onClick={handleGoogleSignUp}
+            className="btn w-full btn-outline btn-info"
+          >
             <FcGoogle size={24}></FcGoogle> Sign up With Google
           </button>
         </div>

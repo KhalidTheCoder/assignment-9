@@ -6,9 +6,25 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn } = use(AuthContext);
+  const { signIn, googleSignIn } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+    const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result);
+        toast.success("Signed in with Google!");
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        toast.error("Google sign in failed!");
+        console.error(error);
+      });
+  };
+
+
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -49,7 +65,7 @@ const Login = () => {
         </p>
 
         <div className="my-6 space-y-4">
-          <button className="btn w-full btn-outline btn-info">
+          <button onClick={handleGoogleSignIn} className="btn w-full btn-outline btn-info">
             <FcGoogle size={24}></FcGoogle> Login With Google
           </button>
         </div>
