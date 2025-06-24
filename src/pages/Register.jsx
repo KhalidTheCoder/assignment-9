@@ -47,7 +47,7 @@ const Register = () => {
               displayName: name,
               photoURL: photo,
             });
-
+            toast.success("Signed Up Successfully");
             navigate(`${location.state ? location.state : "/"}`);
           })
           .catch((error) => {
@@ -88,7 +88,7 @@ const Register = () => {
 
         <div className="my-6 space-y-4">
           <button className="btn w-full btn-outline btn-info">
-            <FcGoogle size={24}></FcGoogle> Login With Google
+            <FcGoogle size={24}></FcGoogle> Sign up With Google
           </button>
         </div>
 

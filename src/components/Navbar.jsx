@@ -7,7 +7,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { user, logOut, balance } = use(AuthContext);
+  const { user, logOut, balance, clearLocalStorage } = use(AuthContext);
 
   return (
     <div className="bg-gray-900">
@@ -83,6 +83,7 @@ const Navbar = () => {
                     <button
                       onClick={() => {
                         logOut();
+                        clearLocalStorage();
                       }}
                       className="w-full text-left rounded-md px-3 py-2 hover:bg-white/10"
                     >

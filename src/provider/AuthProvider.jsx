@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext();
 
@@ -36,10 +37,10 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     return signOut(auth)
       .then(() => {
-        alert("Sign-out successful.");
+        toast.success("Signed Out Successfully");
       })
       .catch((error) => {
-        alert(error.message);
+        toast.error("Sign out failed: " + error.message);
       });
   };
 
@@ -57,6 +58,11 @@ const AuthProvider = ({ children }) => {
     setBalance((prev) => prev - amount);
   };
 
+  const clearLocalStorage = () => {
+    localStorage.clear();
+    setBalance(10000);
+  };
+
   const authData = {
     user,
     setUser,
@@ -67,6 +73,7 @@ const AuthProvider = ({ children }) => {
     setLoading,
     balance,
     reduceBalance,
+    clearLocalStorage,
   };
   return <AuthContext value={authData}>{children}</AuthContext>;
 };

@@ -16,6 +16,7 @@ const Login = () => {
     signIn(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        toast.success("Signed In Successfully");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -40,6 +41,7 @@ const Login = () => {
           Don’t have an account?{" "}
           <Link
             to="/register"
+            state={location.state}
             className="text-purple-600 font-semibold hover:underline focus:underline"
           >
             Sign up here
